@@ -7,8 +7,15 @@
 :toclevels 4:
 :numbered:
 
-== What is Fedora Atomic and its usecase
-Fedora Atomic Host is a very lightweight operating system composed out of standard Fedora rpm packages. It provides same leading edge tools with incorporating the advantages of rpm-ostree.
+== Project Atomic
+Project Atomic integrates the tools and patterns of container-based application and service deployment with trusted operating system platforms to deliver an end-to-end hosting architecture that's modern, reliable, and secure.
+More at <http://www.projectatomic.io/>
+
+== What is Fedora Atomic
+Fedora Atomic Host is a very lightweight operating system composed out of standard Fedora rpm packages. It provides same leading edge tools incorporating the advantages of rpm-ostree.
+
+== Fedora Atomic use cases
+tbd
 
 == Benefits of rpm-ostree model
 RPM-OSTree provides atomic updates and rollback. This means that under no circumstances, the system will be in a "partially updated" state.
