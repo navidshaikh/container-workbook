@@ -8,7 +8,24 @@
 :numbered:
 
 == Concepts 
-tdb
+* What is Kubernetes(k8s)?
+- Service for Container Cluster Management
+- Open Sourced by Google
+- Supports GCE, CoreOS, Azure, vSphere, etc
+- Used to manage Docker containers as a default implementation
+
+* Key components in Kubernets
+- Node
+- Pods
+- Master
+- Services
+- Labels
+- Replication Controllers
+- Volumes
+- Secrets
+- K8S Web Interface
+- K8S CLI
+- K8S API
 
 === Node
 === Pods
@@ -17,6 +34,10 @@ tdb
 === Labels
 === Replication Controllers
 === Volumes
+=== Secrets
+=== K8S Web Interface
+=== K8S CLI
+=== K8S API
 
 == Setting up Kubernetes through Vagrant
 tdb
