@@ -36,7 +36,7 @@
 === Volumes
 === Secrets
 === K8S Web Interface
-=== K8S CLI
+=== K8S CLI - kubelet
 === K8S API
 
 == Setting up Kubernetes through Vagrant
@@ -45,6 +45,8 @@ tdb
 == Starting pods/RC/services
 tdb
 
+== High Availability
+tbd
+
 == Deploying Wordpress 
 tdb
-
