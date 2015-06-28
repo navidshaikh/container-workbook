@@ -117,9 +117,9 @@ A _replication controller_ ensures that a specified number of pod "replicas" are
 
 === Volumes
 
-A Volume is a directory, possibly with some data in it, which is accessible to a Container. Kubernetes Volumes are similar to but not the same as [Docker Volumes]
+A Volume is a directory, possibly with some data in it, which is accessible to a Container. Kubernetes Volumes are similar to but not the same as Docker Volumes
 
-A process in a Container sees a filesystem view composed from two sources: a single Docker image and zero or more Volumes.  A [Docker image](https://docs.docker.com/userguide/dockerimages/) is at the root of the file hierarchy.  Any Volumes are mounted at points on the Docker image;  Volumes do not mount on other Volumes and do not have hard links to other Volumes.  Each container in the Pod independently specifies where on its image to mount each Volume.  This is specified in each container's VolumeMounts property.
+A process in a Container sees a filesystem view composed from two sources: a single Docker image and zero or more Volumes.  A Docker image is at the root of the file hierarchy.  Any Volumes are mounted at points on the Docker image;  Volumes do not mount on other Volumes and do not have hard links to other Volumes.  Each container in the Pod independently specifies where on its image to mount each Volume.  This is specified in each container's VolumeMounts property.
 
 Types of Volumes
 
@@ -137,9 +137,7 @@ a docker image.
 A secret can be used with a pod in two ways: either as files in a volume mounted on one or more of
 its containers, or used by kubelet when pulling images for the pod.
 
-=== K8S Web Interface
 === K8S CLI - kubelet
-=== K8S API
 
 == Setting up Kubernetes through Vagrant
 
