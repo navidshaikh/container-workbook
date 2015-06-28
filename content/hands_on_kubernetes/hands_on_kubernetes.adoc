@@ -28,7 +28,7 @@
 - K8S API
 
 === Node
-`Node` is a worker machine in Kubernetes, previously known as `Minion`. Node
+Node is a worker machine in Kubernetes, previously known as `Minion`. Node
 may be a VM or physical machine, depending on the cluster. Each node has
 the services necessary to run [Pods](pods.md) and be managed from the master
 systems. The services include docker, kubelet and network proxy. 
@@ -60,10 +60,11 @@ and single node life-cycle management.
 === Pods
 In Kubernetes, rather than individual application containers, _pods_ are the smallest deployable units that can be created, scheduled, and managed.
 
-A _pod_ (as in a pod of whales or pea pod) corresponds to a colocated group of applications running with a shared context. Within that context, the applications may also have individual cgroup isolations applied. A pod models an application-specific "logical host" in a containerized environment. It may contain one or more applications which are relatively tightly coupled &mdash; in a pre-container world, they would have executed on the same physical or virtual host.
+A pod (as in a pod of whales or pea pod) corresponds to a colocated group of applications running with a shared context. Within that context, the applications may also have individual cgroup isolations applied. A pod models an application-specific "logical host" in a containerized environment. It may contain one or more applications which are relatively tightly coupled &mdash; in a pre-container world, they would have executed on the same physical or virtual host.
 
 
 === Master
+
 === Services
 A Kubernetes `Service` is an abstraction which defines a logical set of `Pods`
 and a policy by which to access them - sometimes called a micro-service.  The
