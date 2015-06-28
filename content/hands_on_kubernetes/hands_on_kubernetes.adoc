@@ -219,9 +219,6 @@ NAME        LABELS    STATUS
 ```
 Our node (which is the same vagrant box) is in `Ready` state now.
 
-== Starting pods/RC/services
-tdb
-
 == High Availability
 tbd
 
