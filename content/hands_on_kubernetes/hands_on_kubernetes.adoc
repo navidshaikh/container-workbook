@@ -72,6 +72,7 @@ set of `Pods` targeted by a `Service` is (usually) determined by a [`Label
 Selector`](labels.md#label-selectors) (see below for why you might want a `Service` without a
 selector).
 
+```
 {
     "kind": "Service",
     "apiVersion": "v1",
