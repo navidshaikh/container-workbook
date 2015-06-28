@@ -241,6 +241,21 @@ And create pod using above specs
 kubectl create -f nginx_pod.yaml
 ```
 
+== Get the pods
+```
+kubectl get pods
+```
+
+== Describe a pod
+```
+kubectl describe pod nginx
+```
+
+== Delete a pod
+```
+kubectl delete pod nginx
+```
+```
 ===  Deploy Wordpress in Kubernetes
 
 Wordpress is a 2 tier application, database and application. It uses MySQL as its database tier.
