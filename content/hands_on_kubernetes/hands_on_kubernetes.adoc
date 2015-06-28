@@ -137,8 +137,6 @@ a docker image.
 A secret can be used with a pod in two ways: either as files in a volume mounted on one or more of
 its containers, or used by kubelet when pulling images for the pod.
 
-=== K8S CLI - kubelet
-
 == Setting up Kubernetes through Vagrant
 
 *Set up vagrant*
@@ -217,8 +215,27 @@ NAME        LABELS    STATUS
 ```
 Our node (which is the same vagrant box) is in `Ready` state now.
 
-== High Availability
-tbd
+=== Operations in Kubernetes
 
-== Deploying Wordpress 
-tdb
+1- Create a Pod
+Write following pod spec in a manifest file nginx_pod.yaml
+```
+apiVersion: v1beta3
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+    - containerPort: 80
+
+```
+
+And create pod using above specs
+```
+kubectl create -f nginx_pod.yaml
+```
