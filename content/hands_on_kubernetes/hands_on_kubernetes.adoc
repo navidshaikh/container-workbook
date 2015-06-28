@@ -8,8 +8,8 @@
 :toclevels 4:
 :numbered:
 
-== Navid Shaikh (@swordphilic) nshaikh@redhat.com
-== Swapnil Kulkarni (@coolsvap) me@coolsvap.net
+- Navid Shaikh (@swordphilic) nshaikh@redhat.com
+- Swapnil Kulkarni (@coolsvap) me@coolsvap.net
 
 == Concepts 
 * What is Kubernetes(k8s)?
