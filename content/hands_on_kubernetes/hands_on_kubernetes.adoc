@@ -1,6 +1,8 @@
 // vim: set syntax=asciidoc:
 [[hands_on_kubernetes]]
-= k8s hands on
+= Hands on Kubernetes
+== Navid Shaikh (@swordphilic) nshaikh@redhat.com
+== Swapnil Kulkarni (@coolsvap) me@coolsvap.net
 :data-uri:
 :icons:
 :toc:
