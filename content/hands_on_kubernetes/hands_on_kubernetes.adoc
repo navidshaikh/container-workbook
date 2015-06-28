@@ -40,7 +40,54 @@
 === K8S API
 
 == Setting up Kubernetes through Vagrant
-tdb
+
+*Set up vagrant*
+
+```
+$sudo yum -y install vagrant
+
+$sudo service libvirtd start
+```
+
+*Set up the vagrant directory*
+
+The source directory for the Fedora Atomic vagrant image and its Vagrantfile
+```
+$ mkdir -p ~/vagrant/fedora_atomic
+$ cd ~/vagrant/fedora_atomic
+```
+
+*Get the Fedora Atomic image for vagrant*
+
+Source: https://getfedora.org/en/cloud/download/atomic.html
+```
+# Downloading the libvirt/KVM image
+$ wget https://download.fedoraproject.org/pub/fedora/linux/releases/22/Cloud/x86_64/Images/Fedora-Cloud-Atomic-Vagrant-22-20150521.x86_64.vagrant-libvirt.box 
+```
+
+*Create Vagrantfile*
+```
+$ cat > ~/vagrant/fedora_atomic/Vagrantfile <<- EOM
+Vagrant.configure(2) do |config|
+  config.vm.box = "fedora-atomic"
+end
+EOM
+```
+
+*Start the vagrant box*
+```
+$sudo vagrant up
+$sudo vagrant ssh
+```
+vagrant ssh should take you inside of the Vagrant box
+
+*Look up the kubernetes docker and flannel RPM packages version*
+```
+$ rpm -q kubernetes docker flannel
+kubernetes-0.15.0-8.fc22.x86_64
+docker-1.6.0-3.git9d26a07.fc22.x86_64
+flannel-0.2.0-7.fc22.x86_64
+```
 
 == Starting pods/RC/services
 tdb
