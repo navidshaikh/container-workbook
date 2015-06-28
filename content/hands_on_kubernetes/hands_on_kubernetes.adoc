@@ -215,9 +215,10 @@ NAME        LABELS    STATUS
 ```
 Our node (which is the same vagrant box) is in `Ready` state now.
 
-=== Operations in Kubernetes
+== Operations in Kubernetes
 
-1- Create a Pod
+== Create a Pod
+To create a pod we need to define its specs. 
 Write following pod spec in a manifest file nginx_pod.yaml
 ```
 apiVersion: v1beta3
@@ -238,4 +239,89 @@ spec:
 And create pod using above specs
 ```
 kubectl create -f nginx_pod.yaml
+```
+
+===  Deploy Wordpress in Kubernetes
+
+Wordpress is a 2 tier application, database and application. It uses MySQL as its database tier.
+MySQL and Wordpress images used are the official Docker images.
+We'll create a MySQL pod and a Wordpress pod and create a service per pod.
+
+- Create pod for MySQL
+
+```
+apiVersion: v1beta3
+kind: Pod
+metadata:
+  name: mysql
+  labels: 
+    name: mysql
+spec: 
+  containers: 
+    - image: mysql
+      name: mysql
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: yourpassword
+      ports: 
+        - containerPort: 3306
+          name: mysql
+```
+
+- Create service for MySQL
+```
+apiVersion: v1beta3
+kind: Service
+metadata: 
+  labels: 
+    name: mysql
+  name: mysql
+spec: 
+  ports:
+    # the port that this service should serve on
+    - port: 3306
+  # label keys and values that must match in order to receive traffic for this service
+  selector: 
+    name: mysql
+```
+
+- Create pod for Wordpress
+
+```
+apiVersion: v1beta3
+kind: Pod
+metadata:
+  name: wordpress
+  labels: 
+    name: wordpress
+spec: 
+  containers: 
+    - image: wordpress
+      name: wordpress
+      env:
+        - name: WORDPRESS_DB_PASSWORD
+          # must match mysql.yaml password
+          value: yourpassword
+      ports: 
+        - containerPort: 80
+          name: wordpress
+```
+
+- Create Service for Wordpress
+
+```
+apiVersion: v1beta3
+kind: Service
+metadata: 
+  labels: 
+    name: wpfrontend
+  name: wpfrontend
+spec: 
+  ports:
+    # the port that this service should serve on
+    - port: 80
+  # label keys and values that must match in order to receive traffic for this service
+  selector: 
+    name: wordpress
+  type: LoadBalancer
 ```
