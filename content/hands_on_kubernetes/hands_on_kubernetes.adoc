@@ -187,6 +187,34 @@ docker-1.6.0-3.git9d26a07.fc22.x86_64
 flannel-0.2.0-7.fc22.x86_64
 ```
 
+*Start the Kubernetes services*
+```
+# Need sudo access
+$ sudo -i
+
+# Restart and enable services for master
+for SERVICES in etcd kube-apiserver kube-controller-manager kube-scheduler; do 
+    systemctl restart $SERVICES
+    systemctl enable $SERVICES
+    systemctl status $SERVICES 
+done
+
+# Restart and enable services for node
+for SERVICES in kube-proxy kubelet docker; do
+    systemctl restart $SERVICES
+    systemctl enable $SERVICES
+    systemctl status $SERVICES
+done
+```
+
+* Verifying if cluster is setup*
+```
+kubectl get nodes
+NAME        LABELS    STATUS
+127.0.0.1   <none>    Ready
+```
+Our node (which is the same vagrant box) is in `Ready` state now.
+
 == Starting pods/RC/services
 tdb
 
