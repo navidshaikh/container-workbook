@@ -1,13 +1,15 @@
 // vim: set syntax=asciidoc:
 [[hands_on_kubernetes]]
 = Hands on Kubernetes
-== Navid Shaikh (@swordphilic) nshaikh@redhat.com
-== Swapnil Kulkarni (@coolsvap) me@coolsvap.net
+
 :data-uri:
 :icons:
 :toc:
 :toclevels 4:
 :numbered:
+
+== Navid Shaikh (@swordphilic) nshaikh@redhat.com
+== Swapnil Kulkarni (@coolsvap) me@coolsvap.net
 
 == Concepts 
 * What is Kubernetes(k8s)?
