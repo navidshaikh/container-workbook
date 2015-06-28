@@ -28,13 +28,109 @@
 - K8S API
 
 === Node
+`Node` is a worker machine in Kubernetes, previously known as `Minion`. Node
+may be a VM or physical machine, depending on the cluster. Each node has
+the services necessary to run [Pods](pods.md) and be managed from the master
+systems. The services include docker, kubelet and network proxy. 
+
+Node Phase is the current lifecycle phase of node, one of `Pending`,
+`Running` and `Terminated`.
+
+Unlike [Pods](pods.md) and [Services](services.md), a Node is not inherently
+created by Kubernetes: it is either created from cloud providers like GCE,
+or from your physical or virtual machines.
+
+```
+{
+  "kind": "Node",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "10.240.79.157",
+    "labels": {
+      "name": "my-first-k8s-node"
+    }
+  }
+}
+```
+
+Node controller is a component in Kubernetes master which manages Node
+objects. It performs two major functions: cluster-wide node synchronization
+and single node life-cycle management.
+
 === Pods
+In Kubernetes, rather than individual application containers, _pods_ are the smallest deployable units that can be created, scheduled, and managed.
+
+A _pod_ (as in a pod of whales or pea pod) corresponds to a colocated group of applications running with a shared context. Within that context, the applications may also have individual cgroup isolations applied. A pod models an application-specific "logical host" in a containerized environment. It may contain one or more applications which are relatively tightly coupled &mdash; in a pre-container world, they would have executed on the same physical or virtual host.
+
+
 === Master
 === Services
+A Kubernetes `Service` is an abstraction which defines a logical set of `Pods`
+and a policy by which to access them - sometimes called a micro-service.  The
+set of `Pods` targeted by a `Service` is (usually) determined by a [`Label
+Selector`](labels.md#label-selectors) (see below for why you might want a `Service` without a
+selector).
+
+{
+    "kind": "Service",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "my-service"
+    },
+    "spec": {
+        "selector": {
+            "app": "MyApp"
+        },
+        "ports": [
+            {
+                "protocol": "TCP",
+                "port": 80,
+                "targetPort": 9376
+            }
+        ]
+    }
+}
+```
+
+
 === Labels
+_Labels_ are key/value pairs that are attached to objects, such as pods.
+Labels are intended to be used to specify identifying attributes of objects that are meaningful and relevant to users, but which do not directly imply semantics to the core system.
+Labels can be used to organize and to select subsets of objects.  Labels can be attached to objects at creation time and subsequently added and modified at any time.
+Each object can have a set of key/value labels defined.  Each Key must be unique for a given object.
+```
+"labels": {
+  "key1" : "value1",
+  "key2" : "value2"
+}
+```
 === Replication Controllers
+
+A _replication controller_ ensures that a specified number of pod "replicas" are running at any one time.  If there are too many, it will kill some.  If there are too few, it will start more. Unlike in the case where a user directly created pods, a replication controller replaces pods that are deleted or terminated for any reason, such as in the case of node failure or disruptive node maintenance, such as a kernel upgrade. For this reason, we recommend that you use a replication controller even if your application requires only a single pod. Think of it similarly to a process supervisor, only it supervises multiple pods across multiple nodes instead of individual processes on a single node.  A replication controller delegates local container restarts to some agent on the node (e.g., Kubelet or Docker).
+
+
 === Volumes
+
+A Volume is a directory, possibly with some data in it, which is accessible to a Container. Kubernetes Volumes are similar to but not the same as [Docker Volumes]
+
+A process in a Container sees a filesystem view composed from two sources: a single Docker image and zero or more Volumes.  A [Docker image](https://docs.docker.com/userguide/dockerimages/) is at the root of the file hierarchy.  Any Volumes are mounted at points on the Docker image;  Volumes do not mount on other Volumes and do not have hard links to other Volumes.  Each container in the Pod independently specifies where on its image to mount each Volume.  This is specified in each container's VolumeMounts property.
+
+Types of Volumes
+
+Kubernetes currently supports multiple types of Volumes: emptyDir,
+gcePersistentDisk, awsElasticBlockStore, gitRepo, secret, nfs, iscsi,
+glusterfs, persistentVolumeClaim, rbd. The community welcomes additional contributions.
+
+
 === Secrets
+Objects of type `secret` are intended to hold sensitive information, such as
+passwords, OAuth tokens, and ssh keys.  Putting this information in a `secret`
+is safer and more flexible than putting it verbatim in a `pod` definition or in
+a docker image.
+
+A secret can be used with a pod in two ways: either as files in a volume mounted on one or more of
+its containers, or used by kubelet when pulling images for the pod.
+
 === K8S Web Interface
 === K8S CLI - kubelet
 === K8S API
